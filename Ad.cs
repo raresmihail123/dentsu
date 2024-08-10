@@ -5,9 +5,9 @@
     /// </summary>
     public class Ad
     {
-        private string name; //name of the ad
-        private double fee; // individual ad spend(allocated budget)
-        private bool enhanced; // whether the ad is enhanced using third party tools or not
+        private string _name; //name of the ad
+        private double _fee; // individual ad spend(allocated budget)
+        private bool _enhanced; // whether the ad is enhanced using third party tools or not
 
         /// <summary>
         /// constructor for advertisement for which we know all information
@@ -17,9 +17,9 @@
         /// <param name="enhanced"></param>
         public Ad(string name, double fee, bool enhanced)
         {
-            this.name = name;
-            this.fee = fee;
-            this.enhanced = enhanced;
+            this._name = name;
+            this._fee = fee;
+            this._enhanced = enhanced;
         }
         /// <summary>
         /// constructor for target advertisement
@@ -28,29 +28,29 @@
         /// <param name="enhanced"></param>
         public Ad(string name, bool enhanced)
         {
-            this.name = name;
-            this.fee = 0.0;
-            this.enhanced = enhanced;
+            this._name = name;
+            this._fee = 0.0;
+            this._enhanced = enhanced;
         }
         /// <summary>
         /// getters and setters for all attributes
         /// </summary>
         public double Fee
         {
-            get { return fee; }
-            set { fee = value; }
+            get { return _fee; }
+            set { _fee = value; }
         }
 
         public bool Enhanced
         {
-            get { return enhanced; }
-            set { enhanced = value; }
+            get { return _enhanced; }
+            set { _enhanced = value; }
         }
 
         public string Name
         {
-            get { return name; }
-            set { name = value; }
+            get { return _name; }
+            set { _name = value; }
         }
 
 
