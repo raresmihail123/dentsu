@@ -35,6 +35,11 @@ namespace dentsu
             this._targetAd = targetAd;
             this._numberOfAds = _ads.Length;
         }
+
+        public Solution()
+        {
+            
+        }
         
         //TODO: create getters/setters for all properties
         /// <summary>

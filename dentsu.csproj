@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -8,8 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
-      <PackageReference Include="NUnit" Version="4.1.0" />
+        <PackageReference Include="Microsoft.AspNetCore.App" Version="8.0.0" />
+        <PackageReference Include="NUnit" Version="4.1.0" />
     </ItemGroup>
 
 </Project>
