@@ -38,7 +38,13 @@
         public double Fee
         {
             get { return _fee; }
-            set { _fee = value; }
+            set
+            {
+                if (value is double && value >= 0.0)
+                    _fee = value;
+                else
+                    throw new ArgumentOutOfRangeException("Fee must be a rational number greater than 0.");
+            }
         }
 
         public bool Enhanced
