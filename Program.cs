@@ -13,40 +13,45 @@ namespace dentsu
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.WebHost.UseUrls("http://localhost:5000", "https://localhost:5001");
-            // Add services to the container.
-            // Register SolutionService as a singleton
-            builder.Services.AddSingleton<ISolutionService, SolutionService>();
 
-            // Add other services needed by your application
-            builder.Services.AddControllers(); // Add support for API controllers
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:8081")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
 
-            // Add other services here, e.g., for database context, authentication, etc.
+            builder.Services.AddControllers();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage(); // Show detailed error pages in development
+                app.UseDeveloperExceptionPage();
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error"); // Show custom error page in production
-                app.UseHsts(); // Enforce HTTPS
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
 
-            app.UseHttpsRedirection(); // Redirect HTTP requests to HTTPS
-            app.UseStaticFiles(); // Serve static files from wwwroot
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
-            app.UseRouting(); // Enable routing
+            app.UseRouting();
 
-            app.UseAuthentication(); // Enable authentication middleware
-            app.UseAuthorization(); // Enable authorization middleware
+            app.UseCors("AllowSpecificOrigin"); // Use the CORS policy
 
-            app.MapControllers(); // Map controller endpoints
+            app.UseAuthorization();
 
-            app.Run(); // Start the application
+            app.MapControllers();
+
+            app.Run();
+
         }
     }
 }

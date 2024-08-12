@@ -18,9 +18,45 @@ public class SolutionController : ControllerBase
     {
         return Ok(_solutionService.GetSolution().TotalBudget = totalBudget);
     }
-    [HttpGet("get0")]
-    public IActionResult getzero()
+    [HttpGet("getagencyfee")]
+    public IActionResult getAgencyFee(double agencyFee)
     {
-        return Ok(1);
+        return Ok(_solutionService.GetSolution().AgencyFee = agencyFee);
+    }
+    [HttpGet("getthirdpartyfee")]
+    public IActionResult getThirdPartyFee(double thirdPartyFee)
+    {
+        return Ok(_solutionService.GetSolution().ThirdPartyFee = thirdPartyFee);
+    }
+    [HttpGet("getworkinghoursfee")]
+    public IActionResult getWorkingHoursFee(double workingHoursFee)
+    {
+        return Ok(_solutionService.GetSolution().WorkingHoursFee = workingHoursFee);
+    }
+
+    // [HttpGet("gettargetad")]
+    // public IActionResult getTargetAd(string name, bool enhanced)
+    // {
+    //     
+    // }
+    //
+    //
+    //
+    // [HttpGet("getnewad/{id}")]
+    // public IActionResult getNewAd(string name, double fee, bool enhanced)
+    // {
+    //     
+    // }
+    //
+    // [HttpDelete("deletead/{id}")]
+    // public IActionResult deleteAd(int index)
+    // {
+    //     
+    // }
+    [HttpPost("runalgorithm")]
+    public IActionResult showResult()
+    {
+        _solutionService.GetSolution().GoalSeekSolution();
+        return Ok(_solutionService.GetSolution().GetTargetAdFee());
     }
 }

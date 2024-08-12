@@ -12,4 +12,15 @@
         <PackageReference Include="NUnit" Version="4.1.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="frontend\package.json" />
+      <_ContentIncludedByDefault Remove="view\package-lock.json" />
+      <_ContentIncludedByDefault Remove="view\package.json" />
+      <_ContentIncludedByDefault Remove="view\public\manifest.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="view\public\" />
+    </ItemGroup>
+
 </Project>
