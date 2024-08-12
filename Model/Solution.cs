@@ -15,6 +15,7 @@ namespace dentsu
         private double _workingHoursFee; //HOURS
         private int _targetAd; //ad whose budget must be maximized
         private int _numberOfAds;
+        private int _lastIndex;
 
         /// <summary>
         /// constructor for a solution.
@@ -34,6 +35,22 @@ namespace dentsu
             this._workingHoursFee = workingHoursFee;
             this._targetAd = targetAd;
             this._numberOfAds = _ads.Length;
+        }
+        public Solution(double totalBudget, double agencyFee, double thirdPartyFee, double workingHoursFee, int targetAd)
+        {
+            this._totalBudget = totalBudget;
+            this._ads = new Ad[40];
+            this._lastIndex = 0;
+            this._agencyFee = agencyFee;
+            this._thirdPartyFee = thirdPartyFee;
+            this._workingHoursFee = workingHoursFee;
+            this._targetAd = targetAd;
+            this._numberOfAds = _ads.Length;
+        }
+
+        public Solution()
+        {
+            
         }
         
         //TODO: create getters/setters for all properties
@@ -119,7 +136,15 @@ namespace dentsu
         {
             this._ads[this._targetAd].Fee = 0.0;
         }
-        
+
+        public int addAd(Ad ad)
+        {
+            _lastIndex++;
+            if (_lastIndex > 39)
+                throw new IndexOutOfRangeException("Maximum of 40 advertisements.");
+            this._ads[_lastIndex] = ad;
+            return _lastIndex;
+        }
         /// <summary>
         /// getters and setters for all attributes
         /// </summary>
